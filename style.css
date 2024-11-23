@@ -16,6 +16,13 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    justify-content: center;
+}
+
 /* 헤더 스타일 */
 .header {
     text-align: center;
@@ -57,8 +64,14 @@ form {
     gap: 10px;
 }
 
-textarea, input, button {
+textarea {
     width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+input, button {
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ddd;
@@ -76,7 +89,7 @@ button:hover {
 }
 
 #log {
-    height: 600px;
+    height: 210px;
 }
 
 /* 로그 및 블로그 결과 스타일 */
@@ -86,4 +99,8 @@ button:hover {
     background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 4px;
+}
+
+#saveLocationContainer {
+    margin-top: 30px;
 }

@@ -8,42 +8,44 @@
 </head>
 <body>
     <div class="container">
-        <!-- 로고와 회사 이름 -->
-        <header class="header">
-            <img src="appstore.png" alt="RealCoach 로고" class="logo">
-            <h1 class="company-name">RealCoach</h1>
-        </header>
+        <div class="wrapper">
+            <!-- 로고와 회사 이름 -->
+            <header class="header">
+                <img src="appstore.png" alt="RealCoach 로고" class="logo">
+                <h1 class="company-name">RealCoach</h1>
+            </header>
 
-        <!-- 입력 폼 -->
-        <form id="automationForm">
-            <label for="spreadsheetUrl">구글 스프레드시트 URL:</label>
-            <input type="text" id="spreadsheetUrl" placeholder="스프레드시트 URL 입력" required />
+            <!-- 입력 폼 -->
+            <form id="automationForm">
+                <label for="spreadsheetUrl">구글 스프레드시트 URL:</label>
+                <input type="text" id="spreadsheetUrl" placeholder="스프레드시트 URL 입력" required />
 
-            <label for="sheetName">시트 이름:</label>
-            <input type="text" id="sheetName" placeholder="시트 이름 입력 (예: Sheet1)" required />
+                <label for="sheetName">시트 이름:</label>
+                <input type="text" id="sheetName" placeholder="시트 이름 입력 (예: Sheet1)" required />
 
-            <div class="radio-wrapper">
-                <div class="radio-label"><label>피트니스<input type="radio" name="promptType" value="fitness" checked></label></div>
-                <div class="radio-label"><label>일반<input type="radio" name="promptType" value="general"></label></div>
+                <div class="radio-wrapper">
+                    <div class="radio-label"><label>피트니스<input type="radio" name="promptType" value="fitness" checked></label></div>
+                    <div class="radio-label"><label>일반<input type="radio" name="promptType" value="general"></label></div>
+                </div>
+
+                <button type="submit">데이터 가져오기</button>
+            </form>
+
+            <!-- 폴더 저장 위치 -->
+            <div id="saveLocationContainer">
+                <label for="saveLocation">원고 저장 위치:</label>
+                <input type="file" id="saveLocation" webkitdirectory directory required />
             </div>
 
-            <button type="submit">데이터 가져오기</button>
-        </form>
+            <!-- 로그 섹션 -->
+            <div id="logContainer">
+                <h2>로그</h2>
+                <textarea id="log" readonly></textarea>
+            </div>
 
-        <!-- 폴더 저장 위치 -->
-        <div id="saveLocationContainer">
-            <label for="saveLocation">원고 저장 위치:</label>
-            <input type="file" id="saveLocation" webkitdirectory directory required />
+            <!-- 블로그 포스팅 생성 버튼 -->
+            <button id="generatePostButton">블로그 포스팅 생성</button>
         </div>
-
-        <!-- 로그 섹션 -->
-        <div id="logContainer">
-            <h2>로그</h2>
-            <textarea id="log" readonly></textarea>
-        </div>
-
-        <!-- 블로그 포스팅 생성 버튼 -->
-        <button id="generatePostButton">블로그 포스팅 생성</button>
     </div>
     <script src="script.js"></script>
 </body>
