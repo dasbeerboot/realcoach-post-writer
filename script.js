@@ -47,34 +47,63 @@ document.getElementById("automationForm").addEventListener("submit", async (e) =
     }
 });
 
-document.getElementById("generatePostButton").addEventListener("click", async () => {
+document.getElementById("generateZipButton").addEventListener("click", async () => {
     if (fetchedData.length === 0) {
         logMessage("에러: 먼저 스프레드시트 데이터를 가져오세요.");
         return;
     }
 
-    const [companyName, keyword, description, placeAddress] = fetchedData[0]; // 첫 번째 데이터 사용
+    const zip = new JSZip();
 
+    for (const row of fetchedData) {
+        const [companyName, keyword, description, placeAddress] = row;
+
+        for (let i = 1; i <= 3; i++) {
+            try {
+                logMessage(`블로그 포스팅 생성 중... (업체명: ${companyName}, ${i}/3)`);
+                const response = await fetch(`${API_URL}`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        action: "generatePost",
+                        promptType,
+                        companyName,
+                        keyword,
+                        description,
+                        placeAddress,
+                    }),
+                });
+
+                const data = await response.json();
+                const postContent = data.data;
+
+                // ZIP 파일에 추가
+                zip.file(`${companyName}_${i}.txt`, postContent);
+                logMessage(`원고 생성 완료: ${companyName}_${i}.txt`);
+            } catch (error) {
+                logMessage(`에러: ${error.message}`);
+            }
+        }
+    }
+
+    // ZIP 파일 생성 및 다운로드
     try {
-        logMessage(`블로그 포스팅 생성 중... (업체명: ${companyName})`);
-        const response = await fetch(`${API_URL}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                action: "generatePost",
-                promptType,
-                companyName,
-                keyword,
-                description,
-                placeAddress,
-            }),
-        });
+        logMessage("ZIP 파일 생성 중...");
+        const zipBlob = await zip.generateAsync({ type: "blob" });
 
-        const data = await response.json();
-        document.getElementById("blogPostContainer").innerText = data.data;
-        logMessage(`블로그 포스팅 생성 완료! (업체명: ${companyName})`);
+        logMessage("ZIP 파일 생성 완료! 다운로드 준비 중...");
+        const zipUrl = URL.createObjectURL(zipBlob);
+
+        logMessage("파일 다운로드 중...");
+        const a = document.createElement("a");
+        a.href = zipUrl;
+        a.download = "blog_posts.zip";
+        a.click();
+
+        URL.revokeObjectURL(zipUrl);
+        logMessage("ZIP 파일 다운로드 완료!");
     } catch (error) {
-        logMessage(`에러: ${error.message}`);
+        logMessage(`ZIP 파일 생성 중 에러 발생: ${error.message}`);
     }
 });
 

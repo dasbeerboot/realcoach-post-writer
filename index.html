@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>블로그 자동화 - RealCoach</title>
+    <title>RealCoach 블로그 자동화</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,6 +30,12 @@
             <button type="submit">데이터 가져오기</button>
         </form>
 
+        <!-- 폴더 저장 위치 -->
+        <div id="saveLocationContainer">
+            <label for="saveLocation">원고 저장 위치:</label>
+            <input type="file" id="saveLocation" webkitdirectory directory required />
+        </div>
+
         <!-- 로그 섹션 -->
         <div id="logContainer">
             <h2>로그</h2>
@@ -38,7 +44,6 @@
 
         <!-- 블로그 포스팅 생성 버튼 -->
         <button id="generatePostButton">블로그 포스팅 생성</button>
-        <div id="blogPostContainer"></div>
     </div>
     <script src="script.js"></script>
 </body>
