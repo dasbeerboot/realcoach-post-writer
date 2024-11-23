@@ -1,4 +1,4 @@
-const API_URL = "https://<YOUR-CLOUD-RUN-URL>";
+const API_URL ="https://realcoach-post-writer-352283866864.asia-northeast3.run.app";
 
 let fetchedData = []; // 스프레드시트 데이터 저장
 let promptType = "fitness"; // 기본값은 피트니스 프롬프트
