@@ -22,9 +22,9 @@
             <label for="sheetName">시트 이름:</label>
             <input type="text" id="sheetName" placeholder="시트 이름 입력 (예: Sheet1)" required />
 
-            <div>
-                <label><input type="radio" name="promptType" value="fitness" checked> 피트니스</label>
-                <label><input type="radio" name="promptType" value="general"> 일반</label>
+            <div class="radio-wrapper">
+                <div class="radio-label"><label>피트니스<input type="radio" name="promptType" value="fitness" checked></label></div>
+                <div class="radio-label"><label>일반<input type="radio" name="promptType" value="general"></label></div>
             </div>
 
             <button type="submit">데이터 가져오기</button>
